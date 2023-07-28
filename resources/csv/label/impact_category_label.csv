@@ -1,0 +1,18 @@
+code;name;unit;name_fr
+GWP;Global warming;kg CO<sub>2</sub> eq;Réchauffement climatique
+SODP;Stratospheric ozone depletion;kg CFC11 eq;Appauvrissement de la couche d'ozone stratosphérique (ODP)
+IRP;Ionizing radiation;kg Co-60 eq;Radiation ionisante
+OFP;Ozone formation, Human health;kg NOx eq;Formation d'ozone, Santé humaine (HOFP)
+FPMFP;Fine particulate matter formation;kg PM2.5 eq;Formation de particules fines (PMFP)
+TAP;Terrestrial acidification;kg SO<sub>2</sub> eq;Acidification des sols
+FEutP;Freshwater eutrophication;kg P eq;Eutrophisation des eaux douces (FEP)
+TETP;Terrestrial ecotoxicity;kg 1,4-DCB eq;Écotoxicité terrestre
+FETP;Freshwater ecotoxicity;kg 1,4-DCB eq;Écotoxicité des eaux douces
+METP;Marine ecotoxicity;kg 1,4-DCB eq;Écotoxicité marine
+HCTP;Human carcinogenic toxicity;kg 1,4-DCB eq;Toxicité cancérigène pour l'homme (HTPc)
+HNCT;Human non-carcinogenic toxicity;kg 1,4-DCB eq;Toxicité non cancérigène pour l'homme (HTPnc)
+MEPP;Marine eutrophication;kg N-Eq;Eutrophisation marine (MEP)
+LUP;Land use;m<sup>2</sup>a crop eq;Utilisation des terres (LOP)
+MRSP;Mineral resource scarcity;kg Cu eq;Rareté des ressources minérales (SOP)
+FRSP;Fossil resource scarcity;kg oil eq;Rareté des ressources fossiles (FFP)
+WCP;Water consumption;L;Consommation d'eau

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="text-center text-blue mt-2">Eco Analyse</h1>
+
+    <div class="container-fluid row mb-5" {{ stimulus_controller('brain') }}
+         style="margin: 0 auto; width: 80%">
+
+        <div class="container-xxl mb-1 p-0">
+            <div class="input-group">
+                <span class="input-group-text bg-blue text-white" id="basic-addon3">Country :</span>
+                <label for="impact_countries" class="hidden"></label>
+                <select class="form-select custom-select" {{ stimulus_target('brain', 'select2') }}
+                        id="impact_countries">
+                    {% include 'input/_partials/select.html.twig' with {
+                        values: datas.countries,
+                    } %}
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            {# Partie saisie des éléments #}
+            {% include 'input/index.html.twig' %}
+        </div>
+
+        <div class="col-md-5">
+            {# Partie saisie résultat #}
+            {% include 'result/index.html.twig' %}
+        </div>
+
+    </div>
+
+{% endblock %}

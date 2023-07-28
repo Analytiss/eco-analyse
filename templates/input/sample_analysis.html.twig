@@ -1,0 +1,171 @@
+<div class="card mt-3" style="padding: 0" data-controller="input--card input--calculator--analysis">
+    <div class="card-header sample-analysis">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="sample_analysis" id="sample_analysis"
+                   data-action="change->input--card#toggle change->input--calculator--analysis#update"
+                    {{ stimulus_target('input/calculator/analysis', 'activated') }}
+                    {{ stimulus_target('brain', 'updateInput') }} checked>
+            <label for="sample_analysis" class="form-check-label h6">Sample analysis</label>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+
+            {# Total duration of the analysis #}
+            <div class="row mb-3">
+                <label for="total_duration_of_the_analysis" class="col-sm-6 col-form-label">
+                    Total duration of the analysis:
+                </label>
+                <div class="col-sm-6 text-center">
+                    <div class="input-group mb-3">
+                        <input type="number" id="total_duration_of_the_analysis"
+                               name="total_duration_of_the_analysis[value]" {{ stimulus_target('input/card', 'input') }}
+                               class="form-control"
+                               min="0" {{ stimulus_target('input/calculator/analysis', 'durationValue') }}
+                               step="0.1" {{ stimulus_action('input/calculator/analysis', 'update', 'change') }}>
+                        <select class="form-select"
+                                id="total_duration_of_the_analysis" {{ stimulus_target('input/card', 'input') }}
+                                name="total_duration_of_the_analysis[unit]" {{ stimulus_target('input/calculator/analysis', 'durationUnit') }}
+                                {{ stimulus_action('input/calculator/analysis', 'update', 'change') }}>
+                            {% include 'input/_partials/select.html.twig' with {
+                                values: datas.sample_analysis.total_duration_of_the_analysis_unit,
+                            } %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            {# Method #}
+            <div class="mb-3 row">
+                <label for="sample_analysis_technic" class="col-sm-4 col-form-label">
+                    Analytical technique:
+                </label>
+                <div class="col-sm-8">
+                    <select class="form-select custom-select"
+                            id="sample_analysis_technic" {{ stimulus_target('input/card', 'input') }}
+                            {{ stimulus_target('input/calculator/analysis', 'analyticalTechnic') }}
+                            {{ stimulus_action('input/calculator/analysis', 'update', 'change') }}>
+                        {% include 'input/_partials/select.html.twig' with {
+                            values: datas.sample_analysis.method,
+                        } %}
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+            {# Carrier gaz used #}
+            <div class="col-md-7 row " {{ stimulus_target('input/card', 'switch') }}>
+                <label for="gas_carrier_used" class="col-sm-6 col-form-label">
+                    Carrier gas used:
+                </label>
+                <div class="col-sm-6">
+                    <select class="form-select custom-select" id="gas_carrier_used"
+                            {{ stimulus_target('input/calculator/analysis', 'gas') }}
+                            {{ stimulus_action('input/calculator/analysis', 'update', 'change') }}>
+                        {% include 'input/_partials/select.html.twig' with {
+                            values: datas.sample_analysis.gas,
+                        } %}
+                    </select>
+                </div>
+            </div>
+
+            {# Flowrate (ml/min) #}
+            <div class="col-md-5 row mb-3">
+                <label for="flow_rate" class="col-sm-8 col-form-label">
+                    Flowrate (ml/min):
+                </label>
+                <div class="col-sm-4">
+                    <input type="text" id="flow_rate" class="form-control text-center w-100" value="25" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="form-check align-items-center">
+                    <input class="form-check-input" type="checkbox"
+                           data-action="click->input--calculator--analysis#switch click->input--calculator--analysis#update"
+                           value="" id="direct_measurement" {{ stimulus_target('input/card', 'input') }}
+                            {{ stimulus_target('input/calculator/analysis', 'directMeasurement') }}>
+                    <label class="form-check-label" for="direct_measurement">
+                        Direct measurement of electricity consumption
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6 row disabled" {{ stimulus_target('input/calculator/analysis', 'switch') }} hidden>
+                <label for="gas_carrier_used" class="col-sm-7 col-form-label">
+                    Wh Consumption:
+                </label>
+                <div class="col-sm-5">
+                    <input type="number" id="gas_carrier_used" class="form-control w-100"
+                            {{ stimulus_target('input/card', 'input') }} min="0" step="0.1"
+                            {{ stimulus_target('input/calculator/analysis', 'consumption') }}
+                            {{ stimulus_action('input/calculator/analysis', 'update', 'change') }}>
+                </div>
+            </div>
+        </div>
+
+        <div {{ stimulus_target('input/calculator/analysis', 'switch') }}>
+            <p><strong>GC Oven temperature gradient :</strong></p>
+            <div {{ stimulus_controller('input/chart') }}>
+                <div>
+                    <table {{ stimulus_target('input/chart', 'values') }}
+                            {{ stimulus_target('input/calculator/analysis', 'ovenGradient') }}>
+                    </table>
+
+                    <div class="row m-1">
+                        <button type="button"
+                                class="btn btn-outline-ea-yellow" {{ stimulus_target('input/card', 'input') }}
+                                {{ stimulus_action('input/chart', 'addStatement', 'click') }}>
+                            <i class="fa-solid fa-circle-plus"></i>
+                            Add Ramp
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <div {{ stimulus_target('input/chart', 'chart') }}></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input value="{{ path('app_calculator_sample_analysis') }}"
+           type="hidden" {{ stimulus_target('input/calculator/analysis', 'url') }}>
+
+
+    {# Impact #}
+    <input value="0" {{ stimulus_target('input/calculator/analysis', 'sampleAnalysisImpact') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleAnalysisImpact') }}
+            {{ stimulus_action('brain', 'update', 'change') }}>
+
+    {# Duration #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/analysis', 'sampleAnalysisDuration') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleAnalysisDuration') }} >
+
+    {# Energy #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/analysis', 'sampleAnalysisEnergy') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleAnalysisEnergy') }} >
+
+    {# sampleAnalysisEnergyContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/analysis', 'sampleAnalysisEnergyContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleAnalysisEnergyContribution') }} >
+
+    {# sampleAnalysisGasContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/analysis', 'sampleAnalysisGasContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleAnalysisGasContribution') }} >
+    
+    {# sampleAnalysisDeviceContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/analysis', 'sampleAnalysisDeviceContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleAnalysisDeviceContribution') }} >
+</div>

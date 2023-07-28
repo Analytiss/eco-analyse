@@ -1,0 +1,25 @@
+{% for v, value in values %}
+    {% if values.default is defined %}
+        {% if v != 'default' %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio"
+                       name="sample_preparation_value" {{ stimulus_target('input/card', 'input') }}
+                       id="sample_preparation_value_{{ v }}" value="{{ v }}" {{ v == values.default ? 'checked': '' }}
+                        {{ stimulus_action('input/calculator/preparation', 'update', 'change') }}>
+                <label class="form-check-label" for="sample_preparation_value_{{ v }}">
+                    {{ value }}
+                </label>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="form-check">
+            <input class="form-check-input" type="radio"
+                   name="sample_preparation_value" {{ stimulus_target('input/card', 'input') }}
+                   id="sample_preparation_value_{{ v }}" value="{{ v }}"
+                    {{ stimulus_action('input/calculator/preparation', 'update', 'change') }}>
+            <label class="form-check-label" for="sample_preparation_value_{{ v }}">
+                {{ value }}
+            </label>
+        </div>
+    {% endif %}
+{% endfor %}

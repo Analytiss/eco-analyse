@@ -1,0 +1,9 @@
+{% for v, value in values %}
+    {% if values.default is defined %}
+        {% if v != 'default' %}
+            <option value="{{ v }}" {{ v == values.default ? 'selected': '' }}>{{ value }}</option>
+        {% endif %}
+    {% else %}
+        <option value="{{ v }}">{{ value }}</option>
+    {% endif %}
+{% endfor %}

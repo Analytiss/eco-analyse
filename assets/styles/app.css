@@ -1,0 +1,108 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import 'bootstrap-table/dist/bootstrap-table.min.css';
+@import 'select2/dist/css/select2.min.css';
+@import 'select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css';
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334E81;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f7f7;
+}
+
+body {
+  background-color: #f7f7f7;
+}
+
+.bg-blue {
+  background-color: #334E81;
+}
+
+.text-blue {
+  color: #334E81;
+}
+
+.sample-collection {
+  color: white;
+  background-color: #0673B2;
+}
+
+.sample-preparation {
+  color: white;
+  background-color: #04A072;
+}
+
+.sample-analysis {
+  color: white;
+  background-color: #e79f25;
+}
+
+.data-analysis {
+  color: white;
+  background-color: #d55f27;
+}
+
+/* Modification de la couleur des checkboxs */
+.form-check-input:checked {
+  background-color: #334E81;
+  border-color: #334E81;
+}
+
+.card-header {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.mHPointer:hover {
+  cursor: pointer;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.disparition {
+  animation: fadeOut 0.75s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.apparition {
+  animation: fadeIn 0.75s;
+}
+
+.btn-outline-ea-green {
+  border-color: #04A072;
+  color: #04A072;
+}
+.btn-outline-ea-green:hover, .btn-outline-ea-green:active {
+  background-color: #04A072;
+  color: #f7f7f7;
+}
+
+.btn-outline-ea-yellow {
+  border-color: #e79f25;
+  color: #e79f25;
+}
+.btn-outline-ea-yellow:hover, .btn-outline-ea-yellow:active {
+  background-color: #e79f25;
+  color: #f7f7f7;
+}
+
+/*# sourceMappingURL=app.css.map */

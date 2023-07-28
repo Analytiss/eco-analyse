@@ -1,0 +1,26 @@
+version: '3.8'
+
+networks:
+    backend:
+
+services:
+    app:
+        container_name: eco_analyse_bis
+        build: docker/php
+        ports:
+            - "80:80"
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - backend
+
+    database:
+        image: mariadb:10.9.3
+        environment:
+            MARIADB_ROOT_PASSWORD: "bdd_password"
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mariadb/:/var/lib/mysql
+        networks:
+            - backend

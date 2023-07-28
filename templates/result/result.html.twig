@@ -1,0 +1,27 @@
+{# Global result #}
+<div class="p-3 text-white rounded bg-blue">
+    <h1 class="h6 text-uppercase">per functional unit:</h1>
+
+    <div class="w-75" style="margin: 0 auto">
+        <p class="text-center h1">
+            <span {{ stimulus_target('brain', 'resultImpact') }}>0</span>
+            <span {{ stimulus_target('brain', 'resultUnit') }}>kg CO<sub>2</sub> eq</span>
+        </p>
+    </div>
+
+    <div class="w-75 mt-4 d-flex justify-content-evenly" style="margin: 0 auto">
+        <p><i class="fa-solid fa-car me-2"></i>
+            <span {{ stimulus_target('brain', 'resultDistance') }}>0</span> km</p>
+        <p>
+            <i class="fa-solid fa-plug me-2"></i>
+            <span  {{ stimulus_target('brain', 'resultEnergy') }}>0</span> kWh
+        </p>
+        <p title="Analysis + treatment duration">
+            <i class="fa-solid fa-stopwatch me-2"></i>
+            <span  {{ stimulus_target('brain', 'resultTime') }}>0</span> min
+        </p>
+    </div>
+
+    <input type="hidden" {{ stimulus_target('brain', 'resultUnitURL') }}
+           value="{{ path('app_internal_api_impact_category') }}">
+</div>

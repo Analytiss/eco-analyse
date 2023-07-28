@@ -1,0 +1,132 @@
+<div class="card mt-3" style="padding: 0" data-controller="input--card input--calculator--preparation">
+    <div class="card-header sample-preparation">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="sample_preparation" id="sample_preparation"
+                   data-action="change->input--card#toggle change->input--calculator--preparation#update"
+                    {{ stimulus_target('input/calculator/preparation', 'activated') }}
+                    {{ stimulus_target('brain', 'updateInput') }} checked>
+            <label for="sample_preparation" class="form-check-label h6">Sample preparation</label>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        {# Solvent #}
+        <div class="card p-1 pb-0 mb-3">
+            <div class="card-title">
+                <p>Solvents:</p>
+            </div>
+            <div {{ stimulus_target('input/calculator/preparation', 'solventList') }}>
+            </div>
+            <div class="row m-1 mb-2">
+                <button type="button" {{ stimulus_action('input/calculator/preparation', 'addSolvent', 'click') }}
+                        class="btn btn-outline-ea-green" {{ stimulus_target('input/card', 'input') }}>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Add Solvent
+                </button>
+            </div>
+        </div>
+
+        {# Medium #}
+        <div class="card p-1 pb-0 mb-3">
+            <div class="card-title">
+                <p>Mediums:</p>
+            </div>
+            <div {{ stimulus_target('input/calculator/preparation', 'mediumList') }}>
+
+            </div>
+            <div class="row m-1 mb-2">
+                <button type="button" {{ stimulus_action('input/calculator/preparation', 'addMedium', 'click') }}
+                        class="btn btn-outline-ea-green" {{ stimulus_target('input/card', 'input') }}>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Add Medium
+                </button>
+            </div>
+        </div>
+
+        {# Consumable #}
+        <div class="card p-1 pb-0 mb-3">
+            <div class="card-title">
+                <p>Consumables:</p>
+            </div>
+            <div {{ stimulus_target('input/calculator/preparation', 'consumableList') }}>
+
+            </div>
+            <div class="row m-1 mb-2">
+                <button type="button" {{ stimulus_action('input/calculator/preparation', 'addConsumable', 'click') }}
+                        class="btn btn-outline-ea-green" {{ stimulus_target('input/card', 'input') }}
+                        data-action="change->input--calculator--preparation#update">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Add Consumable
+                </button>
+            </div>
+        </div>
+
+        {# Duration of preparation #}
+        <div class="row">
+            <label for="total_duration_of_the_preparation" class="col-sm-6 col-form-label">
+                Total duration of the preparation:
+            </label>
+            <div class="col-sm-6 text-center">
+                <div class="input-group mb-3">
+                    <input type="number" id="total_duration_of_the_preparation"
+                           name="total_duration_of_the_preparation[value]"
+                           class="form-control" {{ stimulus_target('input/card', 'input') }}
+                           min="0" {{ stimulus_target('input/calculator/preparation', 'durationValue') }}
+                           step="0.1" {{ stimulus_action('input/calculator/preparation', 'update', 'change') }}>
+                    <select class="form-select" {{ stimulus_action('input/calculator/preparation', 'update', 'change') }}
+                            {{ stimulus_target('input/calculator/preparation', 'durationUnit') }}
+                            id="total_duration_of_the_preparation" {{ stimulus_target('input/card', 'input') }}
+                            name="total_duration_of_the_preparation[unit]">
+                        {% include 'input/_partials/select.html.twig' with {
+                            values: datas.sample_preparation.duration,
+                        } %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input value="{{ path('app_calculator_sample_preparation') }}"
+           type="hidden" {{ stimulus_target('input/calculator/preparation', 'url') }}>
+
+    <input value="{{ path('app_internal_api_sample_preparation_solvents') }}"
+           type="hidden" {{ stimulus_target('input/calculator/preparation', 'solventListURL') }}>
+
+    <input value="{{ path('app_internal_api_sample_preparation_mediums') }}"
+           type="hidden" {{ stimulus_target('input/calculator/preparation', 'mediumListURL') }}>
+
+    <input value="{{ path('app_internal_api_sample_preparation_consumables') }}"
+           type="hidden" {{ stimulus_target('input/calculator/preparation', 'consumableListURL') }}>
+
+    {# Duration #}
+    <input value="0" {{ stimulus_target('input/calculator/preparation', 'samplePreparationDuration') }}
+           type="hidden" {{ stimulus_target('brain', 'samplePreparationDuration') }}
+            {{ stimulus_action('brain', 'update', 'change') }}>
+
+    {# Impact #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/preparation', 'samplePreparationImpact') }}
+           type="hidden" {{ stimulus_target('brain', 'samplePreparationImpact') }} >
+
+    {# Impact #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/preparation', 'samplePreparationEnergy') }}
+           type="hidden" {{ stimulus_target('brain', 'samplePreparationEnergy') }} >
+
+    {# samplePreparationEnergyContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/preparation', 'samplePreparationEnergyContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'samplePreparationEnergyContribution') }} >
+
+    {# samplePreparationSolventContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/preparation', 'samplePreparationSolventContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'samplePreparationSolventContribution') }} >
+
+    {# samplePreparationConsumableContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/preparation', 'samplePreparationConsumableContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'samplePreparationConsumableContribution') }} >
+
+</div>

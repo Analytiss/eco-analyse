@@ -1,0 +1,109 @@
+@import "color";
+@import "scrollbar";
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import 'bootstrap-table/dist/bootstrap-table.min.css';
+
+@import 'select2/dist/css/select2.min.css';
+@import 'select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css';
+
+
+body {
+    background-color: $body-bg;
+}
+
+.bg-blue {
+    background-color: $blue;
+}
+
+.text-blue {
+    color: $blue;
+}
+
+.sample-collection {
+    color: white;
+    background-color: $ea-blue;
+}
+
+.sample-preparation {
+    color: white;
+    background-color: $ea-green;
+}
+
+.sample-analysis {
+    color: white;
+    background-color: $ea-yellow;
+}
+
+.data-analysis {
+    color: white;
+    background-color: $ea-orange;
+}
+
+/* Modification de la couleur des checkboxs */
+.form-check-input:checked {
+    background-color: $blue;
+    border-color: $blue;
+}
+
+.card-header {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.mHPointer {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// Définition de l'animation de fondu
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+// Classe pour appliquer l'animation de fondu
+.disparition {
+    animation: fadeOut 0.75s; // Réglez la durée de l'animation comme vous le souhaitez
+}
+
+// Définition de l'animation de fondu
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+// Classe pour appliquer l'animation de fondu
+.apparition {
+    animation: fadeIn 0.75s; // Réglez la durée de l'animation comme vous le souhaitez
+}
+
+.btn-outline-ea-green {
+    border-color: $ea-green;
+    color: $ea-green;
+
+    &:hover, &:active {
+        background-color: $ea-green;
+        color: $white;
+    }
+}
+
+.btn-outline-ea-yellow {
+    border-color: $ea-yellow;
+    color: $ea-yellow;
+
+    &:hover, &:active {
+        background-color: $ea-yellow;
+        color: $white;
+    }
+}

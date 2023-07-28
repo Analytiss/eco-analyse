@@ -1,0 +1,103 @@
+<div class="card mt-3" style="padding: 0" data-controller="input--card input--calculator--data">
+    <div class="card-header data-analysis">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="data_treatment"
+                   id="data_treatment" data-action="change->input--card#toggle change->input--calculator--data#update"
+                    {{ stimulus_target('input/calculator/data', 'activated') }}
+                    {{ stimulus_target('brain', 'updateInput') }} checked>
+            <label for="data_treatment" class="form-check-label h6">Data treatment</label>
+        </div>
+    </div>
+
+    <div class="card-body">
+        {# Duration of the data treatment #}
+        <div class="row">
+            <label for="duration_of_the_data_treatment" class="col-sm-5 col-form-label">
+                Total duration of the data treatment:
+            </label>
+            <div class="col-sm-7 text-center">
+                <div class="input-group mb-3">
+                    <input type="number" id="duration_of_the_data_treatment" min="0" step="0.1"
+                           name="duration_of_the_data_treatment[value]" {{ stimulus_target('input/card', 'input') }}
+                           class="form-control" {{ stimulus_target('input/calculator/data', 'value') }}
+                            {{ stimulus_action('input/calculator/data', 'update', 'change') }}>
+                    <select class="form-select"
+                            id="duration_of_the_data_treatment" {{ stimulus_target('input/card', 'input') }}
+                            name="duration_of_the_data_treatment[unit]" {{ stimulus_target('input/calculator/data', 'unit') }}
+                            {{ stimulus_action('input/calculator/data', 'update', 'change') }}>
+                        {% include 'input/_partials/select.html.twig' with {
+                            values: datas.data_treatment.duration_of_the_data_treatment,
+                        } %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        {# Data file size #}
+        <div class="row">
+            <label for="data_file_size" class="col-sm-5 col-form-label text-muted">
+                <i class="fa-solid fa-lock" title="Coming soon..."></i>
+                Data file size:
+            </label>
+            <div class="col-sm-7 text-center">
+                <div class="input-group mb-3">
+                    <input type="number" id="data_file_size"
+                           name="data_file_size[value]" class="form-control" min="0" step="0.1" disabled>
+                    <select class="form-select" id="data_file_size"
+                            name="data_file_size[unit]" disabled>
+                        {% include 'input/_partials/select.html.twig' with {
+                            values: datas.data_treatment.data_file_size,
+                        } %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        {# Data storage type #}
+        <div class="row">
+            <label for="data_storage_type" class="col-sm-5 col-form-label text-muted">
+                <i class="fa-solid fa-lock" title="Coming soon..."></i>
+                Data storage type:
+            </label>
+            <div class="col-sm-7 text-center">
+                <select class="form-select" id="data_file_size"
+                        name="data_storage_type[unit]" disabled>
+                    {% include 'input/_partials/select.html.twig' with {
+                        values: datas.data_treatment.data_storage_type,
+                    } %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <input value="{{ path('app_calculator_data_treatment') }}"
+           type="hidden" {{ stimulus_target('input/calculator/data', 'url') }}>
+
+
+    {# Impact #}
+    <input value="0" {{ stimulus_target('input/calculator/data', 'dataTreatmentImpact') }}
+           type="hidden" {{ stimulus_target('brain', 'dataTreatmentImpact') }}
+            {{ stimulus_action('brain', 'update', 'change') }}>
+
+    {# Duration #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/data', 'dataTreatmentDuration') }}
+           type="hidden" {{ stimulus_target('brain', 'dataTreatmentDuration') }} >
+
+    {# Energy #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/data', 'dataTreatmentEnergy') }}
+           type="hidden" {{ stimulus_target('brain', 'dataTreatmentEnergy') }} >
+
+
+    {# dataTreatmentEnergyContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/data', 'dataTreatmentEnergyContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'dataTreatmentEnergyContribution') }} >
+
+    {# dataTreatmentDeviceContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/data', 'dataTreatmentDeviceContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'dataTreatmentDeviceContribution') }} >
+
+</div>

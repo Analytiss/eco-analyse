@@ -1,0 +1,84 @@
+<div class="card" style="padding: 0" data-controller="input--card input--calculator--collection">
+    <div class="card-header sample-collection">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="sample_collection" id="sample_collection"
+                   data-action="change->input--card#toggle change->input--calculator--collection#update"
+                    {{ stimulus_target('input/calculator/collection', 'activated') }}
+                    {{ stimulus_target('brain', 'updateInput') }} checked>
+            <label for="sample_collection" class="form-check-label h6">Sample Collection</label>
+        </div>
+    </div>
+
+    <div class="card-body">
+        {# Transport mode #}
+        <div class="row">
+            <label for="transport_mode" class="col-sm-4 col-form-label">Transport Mode:</label>
+            <div class="col-sm-8">
+                <select class="form-select custom-select" {{ stimulus_target('input/card', 'input') }}
+                        {{ stimulus_target('input/calculator/collection', 'transportMode') }}
+                        id="transport_mode" {{ stimulus_action('input/calculator/collection', 'update', 'change') }}>
+                    {% include 'input/_partials/select.html.twig' with {
+                        values: datas.sample_collection.transport_mode,
+                    } %}
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            {# Number of sample selected #}
+            <div class="row">
+                <label for="number_of_sample_collected" class="col-sm-8 col-form-label">
+                    Number of samples collected:
+                </label>
+                <div class="col-sm-4">
+                    <input type="number" id="number_of_sample_collected" class="form-control w-100"
+                           min="0" {{ stimulus_target('input/card', 'input') }}
+                            {{ stimulus_action('input/calculator/collection', 'update', 'change') }}
+                           step="1" {{ stimulus_target('input/calculator/collection', 'numberOfSampleCollected') }}>
+                </div>
+            </div>
+
+            {# Distance #}
+            <div class="row mt-3">
+                <label for="distance_back_and_forth" class="col-sm-6 col-form-label">
+                    Distance (back and forth):
+                </label>
+                <div class="col-sm-6">
+                    <div class="input-group mb-3">
+                        <input type="number" id="distance_back_and_forth" name="distance_back_and_forth[value]"
+                               class="form-control" min="0" {{ stimulus_target('input/card', 'input') }}
+                                {{ stimulus_action('input/calculator/collection', 'update', 'change') }}
+                               step="0.1" {{ stimulus_target('input/calculator/collection', 'distanceValue') }}>
+                        <select class="form-select" {{ stimulus_target('input/card', 'input') }}
+                                id="distance_back_and_forth" {{ stimulus_target('input/calculator/collection', 'unit') }}
+                                {{ stimulus_action('input/calculator/collection', 'update', 'change') }}
+                                name="distance_back_and_forth[unit]">
+                            {% include 'input/_partials/select.html.twig' with {
+                                values: datas.sample_collection.distance_back_and_forth,
+                            } %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input value="{{ path('app_calculator_sample_collection') }}"
+           type="hidden" {{ stimulus_target('input/calculator/collection', 'url') }}>
+
+
+    {# Distance #}
+    <input value="0" {{ stimulus_target('input/calculator/collection', 'sampleCollectionDistance') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleCollectionDistance') }}
+            {{ stimulus_action('brain', 'update', 'change') }}>
+
+    {# Impact #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/collection', 'sampleCollectionImpact') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleCollectionImpact') }} >
+
+    {# deviceContribution #}
+    <input value="0" {{ stimulus_action('brain', 'update', 'change') }}
+            {{ stimulus_target('input/calculator/collection', 'sampleCollectionTransportContribution') }}
+           type="hidden" {{ stimulus_target('brain', 'sampleCollectionTransportContribution') }} >
+</div>

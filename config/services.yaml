@@ -1,0 +1,111 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    # Managers
+    App\Manager\AnalyticalTechniqueManager:
+        arguments:
+            $repository: '@App\Repository\AnalyticalTechniqueRepository'
+
+    App\Manager\CountryManager:
+        arguments:
+            $repository: '@App\Repository\CountryRepository'
+            $electricityImpactCategoryRepository: '@App\Repository\ElectricityImpactCategoryRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+
+    App\Manager\ConsumableManager:
+        arguments:
+            $repository: '@App\Repository\ConsumableRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $consumableImpactCategoryRepository: '@App\Repository\ConsumableImpactCategoryRepository'
+
+    App\Manager\DeviceManager:
+        arguments:
+            $repository: '@App\Repository\DeviceRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $deviceImpactCategoryRepository: '@App\Repository\DeviceImpactCategoryRepository'
+
+    App\Manager\GasManager:
+        arguments:
+            $repository: '@App\Repository\GasRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $gasImpactCategoryRepository: '@App\Repository\GasImpactCategoryRepository'
+
+    App\Manager\ImpactCategoryManager:
+        arguments:
+            $repository: '@App\Repository\ImpactCategoryRepository'
+
+    App\Manager\MediumManager:
+        arguments:
+            $repository: '@App\Repository\MediaRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $mediaImpactCategoryRepository: '@App\Repository\MediaImpactCategoryRepository'
+
+    App\Manager\SolventManager:
+        arguments:
+            $repository: '@App\Repository\SolventRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $solventImpactCategoryRepository: '@App\Repository\SolventImpactCategoryRepository'
+
+    App\Manager\TransportManager:
+        arguments:
+            $repository: '@App\Repository\TransportModeRepository'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $transportImpactCategoryRepository: '@App\Repository\TransportImpactCategoryRepository'
+
+    # Calculator
+    App\Calculator\DataTreatmentCalculator:
+        arguments:
+            $deviceManager: '@App\Manager\DeviceManager'
+            $countryManager: '@App\Manager\CountryManager'
+
+    App\Calculator\SampleAnalysisCalculator:
+        arguments:
+            $gasManager: '@App\Manager\GasManager'
+            $countryManager: '@App\Manager\CountryManager'
+            $deviceManager: '@App\Manager\DeviceManager'
+
+    App\Calculator\SampleCollectionCalculator:
+        arguments:
+            $transportManager: '@App\Manager\TransportManager'
+
+    App\Calculator\SamplePreparationCalculator:
+        arguments:
+            $solventManager: '@App\Manager\SolventManager'
+            $mediumManager: '@App\Manager\MediumManager'
+            $consumableManager: '@App\Manager\ConsumableManager'
+            $countryManager: '@App\Manager\CountryManager'
+
+    # Service
+    App\Service\ImportData:
+        arguments:
+            $countryManager: '@App\Manager\CountryManager'
+            $gasManager: '@App\Manager\GasManager'
+            $mediumManager: '@App\Manager\MediumManager'
+            $consumableManager: '@App\Manager\ConsumableManager'
+            $deviceManager: '@App\Manager\DeviceManager'
+            $transportManager: '@App\Manager\TransportManager'
+            $solventManager: '@App\Manager\SolventManager'
+            $impactCategoryManager: '@App\Manager\ImpactCategoryManager'
+            $analyticalTechniqueManager: '@App\Manager\AnalyticalTechniqueManager'

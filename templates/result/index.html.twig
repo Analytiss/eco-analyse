@@ -1,0 +1,21 @@
+<div class="row ps-2 sticky-top pt-3">
+    <div class="mb-3 p-0">
+        <div class="input-group">
+            <span class="input-group-text bg-blue text-white" id="basic-addon3">Impact category :</span>
+            <label for="impact_category" class="hidden"></label>
+            <select class="form-select custom-select" {{ stimulus_target('input/card', 'input') }}
+                    id="impact_category" {{ stimulus_target('brain', 'select2') }}>
+                {% include 'input/_partials/select.html.twig' with {
+                    values: datas.impact_category,
+                } %}
+            </select>
+        </div>
+    </div>
+
+
+    {# Global result #}
+    {% include 'result/result.html.twig' %}
+
+    {# Graphs #}
+    {% include 'result/graphs.html.twig' %}
+</div>
